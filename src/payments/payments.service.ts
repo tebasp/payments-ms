@@ -37,7 +37,11 @@ export class PaymentsService {
       cancel_url: envs.STRIPE_CANCEL_URL,
     });
 
-    return session;
+    return {
+      cancel_url: session?.cancel_url,
+      success_url: session?.success_url,
+      url: session?.url,
+    };
   }
 
   async webhookHandler(req: Request, res: Response) {
